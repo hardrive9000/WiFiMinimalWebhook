@@ -14,7 +14,7 @@ public class WebhookController(IWebhookService webhookService) : ControllerBase
         using StreamReader reader = new(Request.Body);
         string body = await reader.ReadToEndAsync();
 
-        WebhookResponseDto response = await webhookService.ProcessWebhookAsync(body);
+        WebhookResponseDto response = await webhookService.ProcessWebhookAsync(body, Request.HttpContext.Connection.RemoteIpAddress?.ToString());
 
         if (response.IsSuccess)
             return Ok(response);

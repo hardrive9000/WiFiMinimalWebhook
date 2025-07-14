@@ -4,5 +4,5 @@ namespace MinimalWebhook.Application.Interfaces;
 
 public interface IWebhookService
 {
-    Task<WebhookResponseDto> ProcessWebhookAsync(string body);
+    Task<WebhookResponseDto> ProcessWebhookAsync(string body, string? ipAddress);
 }
