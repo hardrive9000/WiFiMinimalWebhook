@@ -5,7 +5,7 @@ using MinimalWebhook.Infrastructure.Logging;
 using MinimalWebhook.Infrastructure.Services;
 using System.Text.Json;
 
-var builder = WebApplication.CreateBuilder(args);
+WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container
 builder.Services.AddControllers();
@@ -23,7 +23,7 @@ builder.Services.ConfigureHttpJsonOptions(options =>
     options.SerializerOptions.WriteIndented = true;
 });
 
-var app = builder.Build();
+WebApplication app = builder.Build();
 
 app.UseRouting();
 app.MapControllers();
