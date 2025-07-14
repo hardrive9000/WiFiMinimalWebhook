@@ -1,26 +1,31 @@
+using MinimalWebhook.Application.Interfaces;
+using MinimalWebhook.Application.Services;
+using MinimalWebhook.Domain.Interfaces;
+using MinimalWebhook.Infrastructure.Logging;
+using MinimalWebhook.Infrastructure.Services;
+using System.Text.Json;
+
 var builder = WebApplication.CreateBuilder(args);
+
+// Add services to the container
+builder.Services.AddControllers();
+builder.Services.AddEndpointsApiExplorer();
+
+// Register application services
+builder.Services.AddScoped<IWebhookService, WebhookService>();
+builder.Services.AddSingleton<ILoggingService, ConsoleLoggingService>();
+builder.Services.AddSingleton<IWiFiCredentialExtractor, WiFiCredentialExtractor>();
+
+// Configure JSON options
+builder.Services.ConfigureHttpJsonOptions(options =>
+{
+    options.SerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
+    options.SerializerOptions.WriteIndented = true;
+});
+
 var app = builder.Build();
 
-app.MapGet("/health", () =>
-{
-    Console.WriteLine($"Health check at {DateTime.Now:yyyy-MM-dd HH:mm:ss}");
-    return Results.Ok(new { status = "healthy", timestamp = DateTime.Now });
-});
-
-app.MapPost("/webhook", async (HttpContext context) =>
-{
-    using StreamReader reader = new(context.Request.Body);
-    string body = await reader.ReadToEndAsync();
-
-    Console.WriteLine($"Body Length: {body.Length} characters");
-    Console.WriteLine("Body Content:");
-    Console.WriteLine(body);
-
-    return Results.Ok(new { 
-        message = "ack",
-        timestamp = DateTime.Now,
-        bodyLength = body.Length
-    });
-});
+app.UseRouting();
+app.MapControllers();
 
 app.Run();
