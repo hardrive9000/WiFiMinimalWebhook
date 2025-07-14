@@ -13,8 +13,8 @@ builder.Services.AddEndpointsApiExplorer();
 
 // Register application services
 builder.Services.AddScoped<IWebhookService, WebhookService>();
-builder.Services.AddSingleton<ILoggingService, ConsoleLoggingService>();
-builder.Services.AddSingleton<IWiFiCredentialExtractor, WiFiCredentialExtractor>();
+builder.Services.AddScoped<ILoggingService, ConsoleLoggingService>();
+builder.Services.AddScoped<IWiFiCredentialExtractor, WiFiCredentialExtractor>();
 
 // Configure JSON options
 builder.Services.ConfigureHttpJsonOptions(options =>
