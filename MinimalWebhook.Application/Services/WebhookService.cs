@@ -5,9 +5,9 @@ using MinimalWebhook.Domain.Models;
 
 namespace MinimalWebhook.Application.Services;
 
-public class WebhookService(IWiFiCredentialExtractor credentialExtractor, ILoggingService loggingService) : IWebhookService
+public class WebhookService(IWiFiCredentialExtractor credentialExtractor, IWiFiCredentialService credentialService, ILoggingService loggingService) : IWebhookService
 {
-    public async Task<WebhookResponseDto> ProcessWebhookAsync(string body)
+    public async Task<WebhookResponseDto> ProcessWebhookAsync(string body, string? ipAddress)
     {
         try
         {
@@ -15,6 +15,7 @@ public class WebhookService(IWiFiCredentialExtractor credentialExtractor, ILoggi
 
             List<WiFiCredential> credentials = await credentialExtractor.ExtractCredentialsAsync(body);
             await loggingService.LogCredentialsExtractedAsync(credentials);
+            await credentialService.SaveCredentialsAsync(credentials, ipAddress);
 
             return new WebhookResponseDto(
                 IsSuccess: true,
