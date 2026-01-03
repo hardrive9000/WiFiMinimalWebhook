@@ -1,14 +1,14 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net9.0</TargetFramework>
-    <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\MinimalWebhook.Application\MinimalWebhook.Application.csproj" />
-    <ProjectReference Include="..\MinimalWebhook.Infrastructure\MinimalWebhook.Infrastructure.csproj" />
+    <ProjectReference Include="..\MinimalWebhook.Domain\MinimalWebhook.Domain.csproj" />
   </ItemGroup>
 
 </Project>
