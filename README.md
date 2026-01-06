@@ -99,7 +99,9 @@ Persistence is an implementation detail, not a design driver.
 This project is intended for **educational and research purposes**.
 
 The backend starts at the point where data already exists.  
-How credentials are obtained or extracted is outside the scope of this repository.
+How credentials are obtained or extracted is outside the scope of this repository. That process is covered separately in a dedicated video tutorial (in Spanish), which can be found here:  
+
+[![](https://img.youtube.com/vi/tU126ww1WWc/0.jpg)](https://www.youtube.com/watch?v=tU126ww1WWc)
 
 The focus here is on:
 - backend design
@@ -131,7 +133,7 @@ See the `LICENSE` file for details.
 
 This project is explained in detail in the accompanying article:
 
-**A Cyberpunk Take on CRUD: Building a WiFi Credential Webhook with .NET 9, Kestrel, and SQLite**
+[**A Cyberpunk Take on CRUD: Building a WiFi Credential Webhook with .NET 9, Kestrel, and SQLite**](https://medium.com/@hardrive9000/a-cyberpunk-take-on-crud-building-a-wifi-credential-webhook-with-net-9-kestrel-and-sqlite-76ef03c4d84e)
 
 (Full architectural walkthrough, design decisions, and security considerations.)
 
